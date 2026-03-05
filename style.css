@@ -1,0 +1,221 @@
+/* =========================
+   Theme Variables
+   Reusable colors, spacing tone, and effects.
+========================= */
+:root {
+    --bg-navy: #0c1424;
+    --bg-teal: #0b2f3a;
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --card-border: rgba(255, 255, 255, 0.22);
+    --text-main: #e9f2f7;
+    --text-soft: #a8bdc9;
+    --input-bg: rgba(8, 18, 36, 0.72);
+    --accent: #2ed3b7;
+    --accent-2: #3ab6ff;
+    --danger: #ff6b6b;
+    --success: #70ffb6;
+    --shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* Ensure padding/border don't change element width calculations */
+* {
+    box-sizing: border-box;
+}
+
+/* =========================
+   Page Base Layout
+   Full-screen centered card with layered gradient background.
+========================= */
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    background:
+        radial-gradient(1200px 600px at 15% -10%, #245f86 0%, transparent 58%),
+        radial-gradient(1000px 500px at 90% 120%, #11686b 0%, transparent 60%),
+        linear-gradient(135deg, var(--bg-navy), var(--bg-teal));
+    color: var(--text-main);
+    display: grid;
+    place-items: center;
+    overflow-x: hidden;
+}
+
+/* Wrapper controls max width of the sign-up card */
+.page-wrap {
+    width: min(92vw, 480px);
+    padding: 22px 0;
+}
+
+/* =========================
+   Glass Card Container
+========================= */
+.glass-card {
+    width: 100%;
+    padding: 30px 24px;
+    border-radius: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+    position: relative;
+    animation: riseIn 0.7s ease;
+}
+
+/* Heading and supporting text */
+h1 {
+    margin: 0 0 6px;
+    font-size: clamp(1.7rem, 4.5vw, 2.1rem);
+    letter-spacing: 0.4px;
+}
+
+.subtitle {
+    margin: 0 0 22px;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+}
+
+/* =========================
+   Form Fields
+========================= */
+.field-group {
+    margin-bottom: 16px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 0.92rem;
+    color: #dcecf5;
+}
+
+/* Default input state */
+input {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: var(--input-bg);
+    border-radius: 12px;
+    padding: 12px 14px;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+/* Placeholder text style */
+input::placeholder {
+    color: #88a2b3;
+}
+
+/* Focus state to guide user attention */
+input:focus {
+    border-color: var(--accent-2);
+    box-shadow: 0 0 0 3px rgba(58, 182, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Validation error state added by JavaScript */
+input.invalid {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.18);
+}
+
+/* Password rule helper text */
+.hint-text {
+    display: block;
+    color: #9bb1bf;
+    margin-top: 7px;
+    font-size: 0.76rem;
+}
+
+/* Field-level validation message */
+.error-text {
+    display: block;
+    min-height: 18px;
+    margin-top: 5px;
+    color: var(--danger);
+    font-size: 0.82rem;
+}
+
+/* =========================
+   Submit Button and Success Message
+========================= */
+button {
+    width: 100%;
+    margin-top: 8px;
+    border: 0;
+    border-radius: 12px;
+    padding: 13px;
+    color: #042933;
+    font-weight: 700;
+    font-size: 0.96rem;
+    cursor: pointer;
+    background: linear-gradient(120deg, var(--accent), #8fffd8);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(46, 211, 183, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.success-text {
+    min-height: 20px;
+    margin-top: 14px;
+    color: var(--success);
+    font-size: 0.9rem;
+}
+
+/* =========================
+   Decorative Background Shapes
+========================= */
+.bg-shape {
+    position: fixed;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(8px);
+    opacity: 0.35;
+}
+
+.shape-1 {
+    width: 260px;
+    height: 260px;
+    background: #53b8ff;
+    top: -40px;
+    left: -40px;
+}
+
+.shape-2 {
+    width: 320px;
+    height: 320px;
+    background: #3ae3aa;
+    right: -80px;
+    bottom: -70px;
+}
+
+/* Entry animation for the form card */
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Mobile spacing adjustments */
+@media (max-width: 480px) {
+    .glass-card {
+        padding: 24px 18px;
+        border-radius: 16px;
+    }
+
+    button {
+        padding: 12px;
+    }
+}
